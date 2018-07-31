@@ -2,16 +2,15 @@ package it.vige.injection.test;
 
 import static java.util.logging.Logger.getLogger;
 import static org.jboss.shrinkwrap.api.ShrinkWrap.create;
+import static org.jboss.shrinkwrap.api.asset.EmptyAsset.INSTANCE;
 import static org.junit.Assert.assertTrue;
 
-import java.io.File;
 import java.util.logging.Logger;
 
 import javax.inject.Inject;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.shrinkwrap.api.asset.FileAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,7 +27,7 @@ public class InjectionTestCase {
 	public static JavaArchive createCDIDeployment() {
 		final JavaArchive jar = create(JavaArchive.class, "injection-cdi-test.jar");
 		jar.addPackage(Writer.class.getPackage());
-		jar.addAsManifestResource(new FileAsset(new File("src/test/resources/META-INF/beans.xml")), "beans.xml");
+		jar.addAsManifestResource(INSTANCE, "beans.xml");
 		return jar;
 	}
 
